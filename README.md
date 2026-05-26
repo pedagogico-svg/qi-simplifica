@@ -1,0 +1,2 @@
+# qi-simplifica
+Painel Pedagógico
