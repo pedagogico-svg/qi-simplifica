@@ -648,6 +648,9 @@
       <a href="https://biraiz.raizeducacao.com.br/" target="_blank" class="link-item">
         <span class="link-dot blue"></span>Dashboard Raiz
       </a>
+      <a href="https://drive.google.com/uc?export=download&id=1IYJy-3gJfkVQ__wrsaz_XqMF5KQhZzWR" target="_blank" class="link-item">
+        <span class="link-dot blue"></span>Carômetro / Contatos
+      </a>
     </div>
   </section>
 
@@ -701,18 +704,7 @@
 </footer>
 
 <script>
-function atualizarRelogio() {
-  const agora = new Date();
-  const dia = String(agora.getDate()).padStart(2, '0');
-  const mes = String(agora.getMonth() + 1).padStart(2, '0');
-  const ano = agora.getFullYear();
-  const hora = String(agora.getHours()).padStart(2, '0');
-  const min = String(agora.getMinutes()).padStart(2, '0');
-  const seg = String(agora.getSeconds()).padStart(2, '0');
-  document.getElementById('relogio').textContent = dia + '/' + mes + '/' + ano + ' às ' + hora + ':' + min + ':' + seg;
-}
-atualizarRelogio();
-setInterval(atualizarRelogio, 1000);
+document.getElementById('relogio').textContent = '09/06/2026 às 12:35';
 
 function atualizarBotaoLimpar() {
   const abertos = document.querySelectorAll('.expandable-grid.open, .expandable.open');
