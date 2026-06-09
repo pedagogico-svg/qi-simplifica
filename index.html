@@ -560,6 +560,15 @@
           <span><span class="sub-icon">🏅</span> Regulamentos/Cronogramas</span>
           <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
         </a>
+        <div class="sub-btn copy-btn" onclick="toggleResultados2026(event)" style="cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;">
+          <span class="sub-icon">🏆</span> Resultados 2026 <span id="resultados2026-arrow" style="font-size:12px; transition: transform 0.2s;">▾</span>
+        </div>
+        <div id="resultados2026-sub" style="display:none; flex-direction:column; gap:6px; padding-left:20px;">
+          <a href="https://drive.google.com/uc?export=download&id=1Of_xRAC7phTQpH2KdI5PY2o7a5cBC5O1" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="font-size:13px; flex-direction:column; align-items:center; gap:3px;">
+            <span><span class="sub-icon">🦘</span> Canguru de Matemática</span>
+            <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
+          </a>
+        </div>
       </div>
 
       <div class="link-item expandable-grid" onclick="toggleEmentas(this)" style="cursor:pointer;">
@@ -794,6 +803,15 @@ function togglePaineis(el) {
   arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
   sub.style.display = isOpen ? 'none' : 'flex';
   atualizarBotaoLimpar();
+}
+
+function toggleResultados2026(e) {
+  e.stopPropagation();
+  const sub = document.getElementById('resultados2026-sub');
+  const arrow = document.getElementById('resultados2026-arrow');
+  const isOpen = sub.style.display === 'flex';
+  sub.style.display = isOpen ? 'none' : 'flex';
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
 }
 
 function toggleSimulados(e) {
