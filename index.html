@@ -487,7 +487,7 @@
   </ul>
   <div style="font-size:11px; color:var(--text-muted); white-space:nowrap; text-align:right; line-height:1.4;">
     <span style="opacity:0.6;">Última atualização</span><br>
-    <span style="color:var(--white); font-weight:500;">12/06/2026 às 18:15</span><br>
+    <span style="color:var(--white); font-weight:500;">18/06/2026 às 15:00</span><br>
     <span style="color:var(--white); font-size:15px;">Atualize o painel com F5</span>
   </div>
 </nav>
@@ -553,26 +553,30 @@
         </div>
       </div>
 
-      <div class="link-item expandable-grid" onclick="toggleOlimpiadas(this)" style="cursor:pointer;">
-        <span class="link-dot blue"></span>Olimpíadas<span class="expand-arrow" style="margin-left:auto;font-size:12px;">▾</span>
+
+      <div class="link-item expandable-grid" onclick="toggleResultadosVest(this)" style="cursor:pointer;">
+        <span class="link-dot amber"></span>Resultados Olimpíadas/Vestibulares<span class="expand-arrow" style="margin-left:auto;font-size:12px;">▾</span>
       </div>
-      <div class="sub-buttons-grid" id="olimpiadas-sub" style="display:none; grid-column: 1 / -1; flex-direction: column; gap: 8px; align-items: stretch;">
-        <a href="https://drive.google.com/uc?export=download&id=1dPlGks35DIU3q6Bqqfp64OQLHSCWCNbF" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
-          <span><span class="sub-icon">🏅</span> Regulamentos/Cronogramas</span>
+      <div class="sub-buttons-grid" id="resultados-vest-sub" style="display:none; grid-column: 1 / -1; flex-direction: column; gap: 8px; align-items: stretch;">
+        <a href="#" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🏅</span> Olimpíadas</span>
+        </a>
+        <a href="https://drive.google.com/uc?export=download&id=1dPlGks35DIU3q6Bqqfp64OQLHSCWCNbF" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px; margin-left:24px;">
+          <span><span class="sub-icon">📄</span> Regulamentos/Cronogramas</span>
           <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
         </a>
-        <div class="sub-btn copy-btn" onclick="toggleResultados2026(event)" style="cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;">
-          <span class="sub-icon">🏆</span> Resultados 2026 <span id="resultados2026-arrow" style="font-size:12px; transition: transform 0.2s;">▾</span>
-        </div>
-        <div id="resultados2026-sub" style="display:none; flex-direction:column; gap:6px; padding-left:20px;">
-          <a href="https://drive.google.com/uc?export=download&id=1Of_xRAC7phTQpH2KdI5PY2o7a5cBC5O1" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="font-size:13px; flex-direction:column; align-items:center; gap:3px;">
-            <span><span class="sub-icon">🦘</span> Canguru de Matemática</span>
-            <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
-          </a>
-          <a href="https://drive.google.com/file/d/1DWL8-OG--oL2LPfhML1zlmiKPBwg8qGy/view?usp=drive_link" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="font-size:13px; flex-direction:column; align-items:center; gap:3px;">
-            <span><span class="sub-icon">🃏</span> Cards Sociais</span>
-          </a>
-        </div>
+        <a href="https://drive.google.com/uc?export=download&id=1Of_xRAC7phTQpH2KdI5PY2o7a5cBC5O1" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px; margin-left:24px;">
+          <span><span class="sub-icon">🦘</span> Resultado Canguru 2026</span>
+          <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
+        </a>
+        <a href="https://drive.google.com/uc?export=download&id=1DWL8-OG--oL2LPfhML1zlmiKPBwg8qGy" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px; margin-left:24px;">
+          <span><span class="sub-icon">🃏</span> Cards Sociais</span>
+          <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
+        </a>
+        <a href="https://drive.google.com/uc?export=download&id=1PGFkSDzMkeo-4XOeYs0zCgStsUdg_2MA" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🎓</span> Performance Acadêmica</span>
+          <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
+        </a>
       </div>
 
       <div class="link-item expandable-grid" onclick="toggleEmentas(this)" style="cursor:pointer;">
@@ -715,7 +719,7 @@
 </footer>
 
 <script>
-document.getElementById('relogio').textContent = '12/06/2026 às 18:15';
+document.getElementById('relogio').textContent = '18/06/2026 às 15:00';
 
 function atualizarBotaoLimpar() {
   const abertos = document.querySelectorAll('.expandable-grid.open, .expandable.open');
@@ -723,7 +727,7 @@ function atualizarBotaoLimpar() {
 }
 
 function limparFiltros() {
-  const ids = ['olimpiadas-sub','grade-sub','calendario-sub','paineis-sub','faltas-sub','rpa-sub','simulados-sub','regimento-sub','manuais-sub','ementas-sub'];
+  const ids = ['olimpiadas-sub','grade-sub','calendario-sub','paineis-sub','faltas-sub','rpa-sub','simulados-sub','regimento-sub','manuais-sub','ementas-sub','resultados-vest-sub'];
   ids.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -736,6 +740,16 @@ function limparFiltros() {
   const simArrow = document.getElementById('simulados-arrow');
   if (simArrow) simArrow.style.transform = '';
   document.getElementById('btn-limpar').style.display = 'none';
+}
+
+function toggleResultadosVest(el) {
+  const sub = document.getElementById('resultados-vest-sub');
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+  const arrow = el.querySelector('.expand-arrow');
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  sub.style.display = isOpen ? 'none' : 'flex';
+  atualizarBotaoLimpar();
 }
 
 function toggleEmentas(el) {
