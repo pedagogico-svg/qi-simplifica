@@ -498,7 +498,7 @@
     <div style="position:relative; margin-bottom:12px;">
       <input id="login-input" type="password" placeholder="Digite sua senha de acesso"
         style="
-          width:100%; padding:14px 44px 14px 16px;
+          width:100%; padding:14px 76px 14px 16px;
           background: rgba(255,255,255,0.06);
           border: 1px solid rgba(255,255,255,0.12);
           border-radius: 12px; color: #fff;
@@ -511,10 +511,15 @@
         onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
       />
       <button type="button" onclick="toggleSenha()" style="
-        position:absolute; right:12px; top:50%; transform:translateY(-50%);
+        position:absolute; right:44px; top:50%; transform:translateY(-50%);
         background:none; border:none; cursor:pointer; padding:4px;
         color:#8a9dc0; font-size:18px; line-height:1;
       " title="Mostrar/ocultar senha" id="btn-olho">👁</button>
+      <button type="button" onclick="toggleLembrar()" style="
+        position:absolute; right:12px; top:50%; transform:translateY(-50%);
+        background:none; border:none; cursor:pointer; padding:4px;
+        color:#8a9dc0; font-size:18px; line-height:1;
+      " title="Lembrar senha" id="btn-cadeado">🔓</button>
     </div>
     <div id="login-erro" style="display:none; color:#ff6b65; font-size:13px; margin-bottom:12px;">Senha incorreta. Tente novamente.</div>
     <button onclick="fazerLogin()" style="
@@ -734,7 +739,7 @@
       <a href="https://biraiz.raizeducacao.com.br/" target="_blank" class="link-item">
         <span class="link-dot blue"></span>Dashboard Raiz
       </a>
-      <a href="https://drive.google.com/file/d/1IYJy-3gJfkVQ__wrsaz_XqMF5KQhZzWR/view?usp=drive_link" target="_blank" class="link-item">
+      <a href="https://drive.google.com/uc?export=download&id=1IYJy-3gJfkVQ__wrsaz_XqMF5KQhZzWR" target="_blank" class="link-item">
         <span class="link-dot blue"></span>Carômetro / Contatos
       </a>
       <a href="https://dep-a-vista.vercel.app/dashboard" target="_blank" class="link-item">
@@ -844,7 +849,7 @@
       </div>
 
       <!-- Carômetro / Contatos -->
-      <a href="https://drive.google.com/file/d/1IYJy-3gJfkVQ__wrsaz_XqMF5KQhZzWR/view?usp=drive_link" target="_blank" class="link-item">
+      <a href="https://drive.google.com/uc?export=download&id=1IYJy-3gJfkVQ__wrsaz_XqMF5KQhZzWR" target="_blank" class="link-item">
         <span class="link-dot blue"></span>Carômetro / Contatos
       </a>
 
@@ -951,9 +956,37 @@ function toggleSenha() {
   }
 }
 
+let lembrarSenha = false;
+
+function toggleLembrar() {
+  lembrarSenha = !lembrarSenha;
+  const cadeado = document.getElementById('btn-cadeado');
+  cadeado.textContent = lembrarSenha ? '🔒' : '🔓';
+  cadeado.title = lembrarSenha ? 'Senha será lembrada' : 'Lembrar senha';
+}
+
+// Carrega senha salva ao abrir
+(function() {
+  const saved = localStorage.getItem('qi_senha');
+  if (saved) {
+    document.getElementById('login-input').value = saved;
+    lembrarSenha = true;
+    document.getElementById('btn-cadeado').textContent = '🔒';
+    document.getElementById('btn-cadeado').title = 'Senha será lembrada';
+  }
+})();
+
 function fazerLogin() {
   const senha = document.getElementById('login-input').value;
   const erro = document.getElementById('login-erro');
+
+  if (senha === SENHA_GESTAO || senha === SENHA_DOCENTE || senha === SENHA_ADM) {
+    if (lembrarSenha) {
+      localStorage.setItem('qi_senha', senha);
+    } else {
+      localStorage.removeItem('qi_senha');
+    }
+  }
 
   if (senha === SENHA_GESTAO) {
     // Gestão vê tudo
