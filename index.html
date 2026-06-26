@@ -956,13 +956,18 @@ function toggleSenha() {
   }
 }
 
-let lembrarSenha = false;
+let lembrarSenha = true;
 
 function toggleLembrar() {
   lembrarSenha = !lembrarSenha;
   const cadeado = document.getElementById('btn-cadeado');
-  cadeado.textContent = lembrarSenha ? '🔒' : '🔓';
-  cadeado.title = lembrarSenha ? 'Senha será lembrada' : 'Lembrar senha';
+  const input = document.getElementById('login-input');
+  cadeado.textContent = lembrarSenha ? '🔓' : '🔒';
+  cadeado.title = lembrarSenha ? 'Senha aparece salva' : 'Senha não será salva';
+  if (!lembrarSenha) {
+    input.value = '';
+    localStorage.removeItem('qi_senha');
+  }
 }
 
 // Carrega senha salva ao abrir
@@ -971,8 +976,12 @@ function toggleLembrar() {
   if (saved) {
     document.getElementById('login-input').value = saved;
     lembrarSenha = true;
+    document.getElementById('btn-cadeado').textContent = '🔓';
+    document.getElementById('btn-cadeado').title = 'Senha aparece salva';
+  } else {
+    lembrarSenha = false;
     document.getElementById('btn-cadeado').textContent = '🔒';
-    document.getElementById('btn-cadeado').title = 'Senha será lembrada';
+    document.getElementById('btn-cadeado').title = 'Senha não será salva';
   }
 })();
 
