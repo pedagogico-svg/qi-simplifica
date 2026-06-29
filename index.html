@@ -548,7 +548,7 @@
   <div style="display:flex; align-items:center; gap:16px;">
     <div style="font-size:11px; color:var(--text-muted); white-space:nowrap; text-align:right; line-height:1.4;">
       <span style="opacity:1; color:var(--white); font-weight:500;">Última atualização</span><br>
-      <span id="relogio" contenteditable="true" title="Clique para editar a data" style="color:var(--white); font-weight:500; cursor:text; outline:none; border-bottom:1px dashed rgba(255,255,255,0.3);">25/06/2026 às 14:00</span>
+      <span id="relogio" style="color:var(--white); font-weight:500;"></span>
     </div>
     <button onclick="fazerLogoff()" title="Sair" style="
       background: rgba(232,49,42,0.12);
@@ -939,6 +939,13 @@
 </footer>
 
 <script>
+// === DATA DE ÚLTIMA ATUALIZAÇÃO DO ARQUIVO ===
+const ULTIMA_ATUALIZACAO = "29/06/2026 às 10:00";
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('relogio');
+  if (el) el.textContent = ULTIMA_ATUALIZACAO;
+});
+
 // === SISTEMA DE LOGIN ===
 const SENHA_GESTAO = 'qisimplifica@gestor';
 const SENHA_DOCENTE = 'qisimplifica@professor';
