@@ -721,6 +721,27 @@
         </a>
       </div>
 
+      <div class="link-item expandable-grid" onclick="togglePortais(this)" style="cursor:pointer;">
+        <span class="link-dot blue"></span>Links dos Portais<span class="expand-arrow" style="margin-left:auto;font-size:12px;">▾</span>
+      </div>
+      <div class="sub-buttons-grid" id="portais-sub" style="display:none; grid-column: 1 / -1; flex-direction: column; gap: 8px; align-items: stretch;">
+        <a href="https://app.sae.digital/entrar/" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> SAE</span>
+        </a>
+        <a href="https://app.portalsaseducacao.com.br/entrar/" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> SAS</span>
+        </a>
+        <a href="https://id.layers.digital/?context=web" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> MeuQI</span>
+        </a>
+        <a href="https://portalrm.raizeducacao.com.br/FrameHTML/Web/App/Edu/PortalDoProfessor/#/login" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> Portal do Professor</span>
+        </a>
+        <a href="https://login.zeev.it/?c=eyJhcHBDb2RlIjoiIiwibGFuZ3VhZ2UiOiJwdC1CUiIsIm9yaWdpbiI6Imh0dHBzOi8vcmFpemVkdWNhY2FvLnplZXYuaXQvIiwidXJsUmVkaXJlY3QiOiIiLCJmZWVkYmFjayI6IiIsImNvZFN5c3RlbSI6MTYzN30%3D&utm_medium=email&_hsenc=p2ANqtz-9HNBioWaJuvc_82a7fFhocCKc9IReG8_wiyVqIdwlQuImUuUYNa3M-zCOm3rGryWXvjrf3PrnvwtABHzDrVsDzpjx2BqqsCr1lWae2qHGh0HirBSM&_hsmi=330295774&utm_content=330295774&utm_source=hs_email" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> Ticket</span>
+        </a>
+      </div>
+
 
       <div class="link-item expandable-grid" onclick="toggleCalendario(this)" style="cursor:pointer;">
         <span class="link-dot blue"></span>Calendários<span class="expand-arrow" style="margin-left:auto;font-size:12px;">▾</span>
@@ -843,6 +864,28 @@
         </a>
       </div>
 
+      <!-- Links dos Portais -->
+      <div class="link-item expandable-grid" onclick="toggleDocentesPortais(this)" style="cursor:pointer;">
+        <span class="link-dot blue"></span>Links dos Portais<span class="expand-arrow" style="margin-left:auto;font-size:12px;">▾</span>
+      </div>
+      <div class="sub-buttons-grid" id="doc-portais-sub" style="display:none; grid-column: 1 / -1; flex-direction: column; gap: 8px; align-items: stretch;">
+        <a href="https://app.sae.digital/entrar/" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> SAE</span>
+        </a>
+        <a href="https://app.portalsaseducacao.com.br/entrar/" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> SAS</span>
+        </a>
+        <a href="https://id.layers.digital/?context=web" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> MeuQI</span>
+        </a>
+        <a href="https://portalrm.raizeducacao.com.br/FrameHTML/Web/App/Edu/PortalDoProfessor/#/login" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> Portal do Professor</span>
+        </a>
+        <a href="https://login.zeev.it/?c=eyJhcHBDb2RlIjoiIiwibGFuZ3VhZ2UiOiJwdC1CUiIsIm9yaWdpbiI6Imh0dHBzOi8vcmFpemVkdWNhY2FvLnplZXYuaXQvIiwidXJsUmVkaXJlY3QiOiIiLCJmZWVkYmFjayI6IiIsImNvZFN5c3RlbSI6MTYzN30%3D&utm_medium=email&_hsenc=p2ANqtz-9HNBioWaJuvc_82a7fFhocCKc9IReG8_wiyVqIdwlQuImUuUYNa3M-zCOm3rGryWXvjrf3PrnvwtABHzDrVsDzpjx2BqqsCr1lWae2qHGh0HirBSM&_hsmi=330295774&utm_content=330295774&utm_source=hs_email" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+          <span><span class="sub-icon">🔗</span> Ticket</span>
+        </a>
+      </div>
+
       <!-- Carômetro / Contatos -->
       <a href="https://drive.google.com/uc?export=download&id=1IYJy-3gJfkVQ__wrsaz_XqMF5KQhZzWR" target="_blank" class="link-item">
         <span class="link-dot blue"></span>Carômetro / Contatos
@@ -948,7 +991,7 @@
 
 <script>
 // === DATA DE ÚLTIMA ATUALIZAÇÃO DO ARQUIVO ===
-const ULTIMA_ATUALIZACAO = "07/07/2026 às 16:55";
+const ULTIMA_ATUALIZACAO = "13/07/2026 às 17:21";
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('relogio');
   if (el) el.textContent = ULTIMA_ATUALIZACAO;
@@ -1088,7 +1131,7 @@ function atualizarBotaoLimpar() {
 }
 
 function limparFiltros() {
-  const ids = ['olimpiadas-sub','grade-sub','calendario-sub','paineis-sub','faltas-sub','rpa-sub','simulados-sub','regimento-sub','manuais-sub','ementas-sub','resultados-vest-sub'];
+  const ids = ['olimpiadas-sub','grade-sub','calendario-sub','paineis-sub','faltas-sub','rpa-sub','simulados-sub','regimento-sub','manuais-sub','ementas-sub','resultados-vest-sub','portais-sub'];
   ids.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
@@ -1156,6 +1199,16 @@ function toggleOlimpiadas(el) {
 
 function toggleGrade(el) {
   const sub = document.getElementById('grade-sub');
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+  const arrow = el.querySelector('.expand-arrow');
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  sub.style.display = isOpen ? 'none' : 'flex';
+  atualizarBotaoLimpar();
+}
+
+function togglePortais(el) {
+  const sub = document.getElementById('portais-sub');
   const isOpen = el.classList.contains('open');
   el.classList.toggle('open', !isOpen);
   const arrow = el.querySelector('.expand-arrow');
@@ -1238,6 +1291,15 @@ function toggleDocentesGrade(el) {
 
 function toggleDocentesCalendario(el) {
   const sub = document.getElementById('doc-calendario-sub');
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+  const arrow = el.querySelector('.expand-arrow');
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  sub.style.display = isOpen ? 'none' : 'flex';
+}
+
+function toggleDocentesPortais(el) {
+  const sub = document.getElementById('doc-portais-sub');
   const isOpen = el.classList.contains('open');
   el.classList.toggle('open', !isOpen);
   const arrow = el.querySelector('.expand-arrow');
