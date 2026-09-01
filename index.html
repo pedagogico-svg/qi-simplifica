@@ -819,7 +819,7 @@
         <button class="sub-btn copy-btn" onclick="copyRPA(event)" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
           <span><span class="sub-icon">🔗</span> Copiar link para compartilhamento</span>
         </button>
-        <a href="https://www.jotform.com/form/261185593503055" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
+        <a href="https://forms.gle/dXr591xs9QRDefPb7" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:3px;">
           <span><span class="sub-icon">↗</span> Abrir link para preenchimento</span>
         </a>
         <span class="copy-feedback" id="copy-feedback" style="display:none;">✓ Link copiado!</span>
@@ -1377,7 +1377,7 @@ function toggleAdmGrade(el) {
 
 function copyRPA(e) {
   e.stopPropagation();
-  navigator.clipboard.writeText('https://www.jotform.com/form/261185593503055').then(() => {
+  navigator.clipboard.writeText('https://forms.gle/dXr591xs9QRDefPb7').then(() => {
     const fb = document.getElementById('copy-feedback');
     fb.style.display = 'inline';
     setTimeout(() => fb.style.display = 'none', 2500);
