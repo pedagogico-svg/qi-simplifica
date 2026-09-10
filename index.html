@@ -919,6 +919,21 @@
         <span class="link-dot blue"></span>Raiz do Conhecimento
       </a>
 
+      <!-- Notas de Simulados e Desafios -->
+      <div class="link-item expandable-grid" onclick="toggleDocentesNotasSimulados(this)" style="cursor:pointer;">
+        <span class="link-dot blue"></span>Notas de Simulados e Desafios<span class="expand-arrow" style="margin-left:auto;font-size:12px;">▾</span>
+      </div>
+      <div class="sub-buttons-grid" id="doc-notas-simulados-sub" style="display:none; grid-column: 1 / -1; flex-direction: row; gap: 8px; align-items: stretch; flex-wrap: wrap;">
+        <a href="https://drive.google.com/uc?export=download&id=1mEVMT762-8HdWPioNJmlNPs4kRkh5qzZ" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:4px;">
+          <span><span class="sub-icon">🏆</span> Desafios Teens, Young e Kids</span>
+          <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
+        </a>
+        <a href="https://drive.google.com/uc?export=download&id=1BbmIESqpcmIoofSjJC8WkCehnrvJi9hj" target="_blank" class="sub-btn open-btn" onclick="event.stopPropagation()" style="justify-content:center; flex-direction:column; align-items:center; gap:4px;">
+          <span><span class="sub-icon">📄</span> Resultado das correções e notas dos simulados 9º, EM, 3ª série</span>
+          <span style="font-size:11px; opacity:0.7;">⬇ Baixar arquivo</span>
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -1333,6 +1348,15 @@ function toggleDocentesCalendario(el) {
 
 function toggleDocentesPortais(el) {
   const sub = document.getElementById('doc-portais-sub');
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open', !isOpen);
+  const arrow = el.querySelector('.expand-arrow');
+  arrow.style.transform = isOpen ? '' : 'rotate(180deg)';
+  sub.style.display = isOpen ? 'none' : 'flex';
+}
+
+function toggleDocentesNotasSimulados(el) {
+  const sub = document.getElementById('doc-notas-simulados-sub');
   const isOpen = el.classList.contains('open');
   el.classList.toggle('open', !isOpen);
   const arrow = el.querySelector('.expand-arrow');
