@@ -546,9 +546,18 @@
     <li><a href="#docentes" id="nav-docentes" style="color:#f5a623;">Área do Docente</a></li>
   </ul>
   <div style="display:flex; align-items:center; gap:16px;">
-    <div style="font-size:11px; color:var(--text-muted); white-space:nowrap; text-align:right; line-height:1.4;">
-      <span style="opacity:1; color:var(--white); font-weight:500;">Última atualização</span><br>
-      <span id="relogio" style="color:var(--white); font-weight:500;"></span>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <div style="font-size:11px; color:var(--text-muted); white-space:nowrap; text-align:right; line-height:1.4;">
+        <span style="opacity:1; color:var(--white); font-weight:500;">Última atualização</span><br>
+        <span id="relogio" style="color:var(--white); font-weight:500;"></span>
+      </div>
+      <button type="button" id="btn-atualizar-data" onclick="abrirAtualizarData()" title="Atualizar data e hora (Brasília)" style="
+        background:none; border:1px solid var(--card-border); border-radius:8px;
+        width:30px; height:30px; display:flex; align-items:center; justify-content:center;
+        color:var(--text-muted); cursor:pointer; transition:all 0.2s; padding:0;
+      " onmouseover="this.style.color='#fff'; this.style.borderColor='rgba(255,255,255,0.25)'" onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='var(--card-border)'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+      </button>
     </div>
     <button onclick="fazerLogoff()" title="Sair" style="
       background: rgba(232,49,42,0.12);
@@ -1026,17 +1035,110 @@
     </div>
   </section>
 
+<!-- MODAL ATUALIZAR DATA -->
+<div id="modal-atualizar" onclick="if(event.target===this) fecharAtualizarData()" style="
+  display:none; position:fixed; inset:0; z-index:10000;
+  background:rgba(5,12,24,0.7); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center; padding:16px;
+">
+  <div style="
+    background:#0f2044; border:1px solid rgba(255,255,255,0.1); border-radius:16px;
+    padding:28px 24px; width:100%; max-width:340px; font-family:'DM Sans',sans-serif;
+  ">
+    <h3 style="font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:#fff; margin-bottom:6px;">Atualizar data</h3>
+    <p style="font-size:12px; color:#8a9dc0; margin-bottom:18px; line-height:1.5;">Define a data e hora atuais de Brasília e baixa o index.html atualizado.</p>
+    <input id="senha-atualizar" type="password" placeholder="Senha"
+      onkeydown="if(event.key==='Enter') confirmarAtualizarData(); if(event.key==='Escape') fecharAtualizarData();"
+      style="width:100%; padding:12px 14px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+      border-radius:10px; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; outline:none; margin-bottom:10px;">
+    <div id="erro-atualizar" style="display:none; color:#ff6b65; font-size:12px; margin-bottom:10px;">Senha incorreta.</div>
+    <div style="display:flex; gap:8px;">
+      <button type="button" onclick="fecharAtualizarData()" style="flex:1; padding:11px; background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:#8a9dc0; font-family:'DM Sans',sans-serif; font-size:13px; cursor:pointer;">Cancelar</button>
+      <button type="button" onclick="confirmarAtualizarData()" style="flex:1; padding:11px; background:#e8312a; border:none;
+        border-radius:10px; color:#fff; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer;">Atualizar</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <strong>Qi Simplifica</strong> · Central Pedagógica · Colégio Bilíngue &nbsp;·&nbsp; Uso interno — gestores pedagógicos
 </footer>
 
 <script>
+// === CÓPIA DO ARQUIVO ORIGINAL (antes de qualquer alteração da página) ===
+const HTML_ORIGINAL = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
 // === DATA DE ÚLTIMA ATUALIZAÇÃO DO ARQUIVO ===
 const ULTIMA_ATUALIZACAO = "07/10/2026 às 12:10";
-document.addEventListener('DOMContentLoaded', () => {
+const SENHA_ATUALIZACAO = 'Ped@1234';
+
+function dataParaNumero(txt) {
+  const m = /(\d{2})\/(\d{2})\/(\d{4}) às (\d{2}):(\d{2})/.exec(txt || '');
+  return m ? Number(m[3] + m[2] + m[1] + m[4] + m[5]) : 0;
+}
+
+function dataAtualBrasilia() {
+  const p = {};
+  new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', hour12: false
+  }).formatToParts(new Date()).forEach(x => p[x.type] = x.value);
+  return `${p.day}/${p.month}/${p.year} às ${p.hour}:${p.minute}`;
+}
+
+function exibirDataAtualizacao() {
   const el = document.getElementById('relogio');
-  if (el) el.textContent = ULTIMA_ATUALIZACAO;
-});
+  if (!el) return;
+  let data = ULTIMA_ATUALIZACAO;
+  try {
+    const salva = localStorage.getItem('qi_ultima_atualizacao');
+    if (salva && dataParaNumero(salva) > dataParaNumero(data)) data = salva;
+  } catch (e) {}
+  el.textContent = data;
+}
+document.addEventListener('DOMContentLoaded', exibirDataAtualizacao);
+
+function abrirAtualizarData() {
+  const modal = document.getElementById('modal-atualizar');
+  modal.style.display = 'flex';
+  document.getElementById('erro-atualizar').style.display = 'none';
+  const input = document.getElementById('senha-atualizar');
+  input.value = '';
+  setTimeout(() => input.focus(), 50);
+}
+
+function fecharAtualizarData() {
+  document.getElementById('modal-atualizar').style.display = 'none';
+}
+
+function confirmarAtualizarData() {
+  const input = document.getElementById('senha-atualizar');
+  if (input.value !== SENHA_ATUALIZACAO) {
+    document.getElementById('erro-atualizar').style.display = 'block';
+    input.value = '';
+    input.focus();
+    return;
+  }
+  const nova = dataAtualBrasilia();
+  document.getElementById('relogio').textContent = nova;
+  try { localStorage.setItem('qi_ultima_atualizacao', nova); } catch (e) {}
+
+  // Gera o index.html já com a nova data gravada, para substituir o publicado
+  const html = HTML_ORIGINAL.replace(
+    /const ULTIMA_ATUALIZACAO = "[^"]*";/,
+    `const ULTIMA_ATUALIZACAO = "${nova}";`
+  );
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index.html';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+
+  fecharAtualizarData();
+}
 
 // === SISTEMA DE LOGIN ===
 const SENHA_GESTAO = 'qisimplifica@gestor';
